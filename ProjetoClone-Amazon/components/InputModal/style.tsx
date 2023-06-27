@@ -1,7 +1,7 @@
 import styled from "styled-components/native"
 
 export const Container = styled.View<{ inputWidthPercent: number }>`
-  height: 30%;
+  height: 60%;
   width: 100%;
   background-color: #ffffff;
   align-items: center;

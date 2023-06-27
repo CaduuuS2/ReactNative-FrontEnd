@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
 import InputModal from '../../../components/InputModal';
-import { TituloImput, Container, ImputView, TermosAdesao, Main, Header, Footer, TextoPadrao, ViewEnvelope1, ViewEnvelope2, TextInc, Title } from './style';
-import { TextoTitulo } from '../PreLogin/style';
+import { TituloImput, Container, Logo, ImputView, TermosAdesao, Main, Header, Footer, TextoPadrao, ViewEnvelope1, ViewEnvelope2, ViewEnvelope3, TextInc, Title, BotaoViewYellow, Btn, ButtonText, Subtitulo } from './style';
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { StackParams } from '../../../routes';
+import { useNavigation } from "@react-navigation/native";
 
 const Login = () => {
+    const navigation = useNavigation<NativeStackNavigationProp<StackParams>>();
     const [nome, setNome] = useState()
     const [senha, setSenha] = useState()
 
     return (
         <Container>
-            <Header source={require('../../../assets/imagens/amazon3.jpg')}>
-            </Header>
+            <Header>
+            <Logo source={require('../../../assets/imagens/amazon3.jpg')}/>
             <Title>Bem-vindo(a)</Title>
+            <Subtitulo>LOGIN. Já é cliente?</Subtitulo>
+            </Header>
             <Main>
                 <ImputView>
-                    <TextoTitulo>Usuário</TextoTitulo>
+                    <TituloImput>E-mail ou número de telefone</TituloImput>
                     <InputModal
                         placeholder="Nome"
                         value={nome}
@@ -22,7 +27,7 @@ const Login = () => {
                     />
                 </ImputView>
                 <ImputView>
-                    <TextoTitulo>Senha</TextoTitulo>
+                    <TituloImput>Senha amazon</TituloImput>
                     <InputModal
                         placeholder="Senha"
                         secureTextEntry={true}
@@ -30,6 +35,11 @@ const Login = () => {
                         onChangeText={setSenha}
                     />
                 </ImputView>
+                <BotaoViewYellow>
+                            <Btn onPress={() => navigation.navigate('Capa')}>
+                                <ButtonText>{'Continuar'}</ButtonText>
+                            </Btn>
+                </BotaoViewYellow>
                 <TermosAdesao>Ao continuar, você concorda com as Condições de Uso da Amazon. Por favor
                     verifique a Notificação de Privacidade, Notificações de Cookies e a Notificação de
                     Anúncios Baseados em Interesse.
@@ -55,8 +65,10 @@ const Login = () => {
                     </TextoPadrao>
                 </ViewEnvelope1>
             </ViewEnvelope2>
+            <ViewEnvelope3>
             <TextoPadrao>Anúncios Baseados em Interesse</TextoPadrao>
             <TextInc>© 2021-2023 Amazon.com, Inc. ou suas afiliadas</TextInc>
+            </ViewEnvelope3>
         </Footer>
         </Container >)
 }
